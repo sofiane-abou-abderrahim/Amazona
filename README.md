@@ -7,11 +7,11 @@
 3. Create React App
 4. Create Git Repository
 5. List Products
-   a. create products array
-   b. add product images
-   c. render products
-   d. style products
+   1. create products array
+   2. add product images
+   3. render products
+   4. style products
 6. Add page routing
-   a. npm i react-router-dom
-   b. create route for home screen
-   c. create router for product screen
+   1. npm i react-router-dom
+   2. create route for home screen
+   3. create router for product screen
