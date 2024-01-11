@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import data from '../data';
+import { useState } from 'react';
 
 function HomeScreen() {
+  const [products, setProducts] = useState();
   return (
     <div>
       <h1>Featured Products</h1>
