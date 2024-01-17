@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { Store } from '../Store';
 import { Helmet } from 'react-helmet-async';
-import Row from 'react-bootstrap/esm/Row';
-import Col from 'react-bootstrap/esm/Col';
-import MessageBox from '../components/MessageBox';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import MessageBox from '../components/MessageBox';
 import { Link } from 'react-router-dom';
 
 export default function CartScreen() {
@@ -37,6 +38,21 @@ export default function CartScreen() {
                         className="img-fluid rounded img-thumbnail"
                       ></img>{' '}
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                    </Col>
+                    <Col md={3}>
+                      <Button variant="light" disabled={item.quantity === 1}>
+                        <i className="fas fa-minus-circle"></i>
+                      </Button>{' '}
+                      <span>{item.quantity}</span>{' '}
+                      <Button variant="light" disabled={item.quantity === 1}>
+                        <i className="fas fa-plus-circle"></i>
+                      </Button>
+                    </Col>
+                    <Col md={3}>${item.price}</Col>
+                    <Col md={2}>
+                      <Button variant="light">
+                        <i className="fas fa-trash"></i>
+                      </Button>
                     </Col>
                   </Row>
                 </ListGroup.Item>
