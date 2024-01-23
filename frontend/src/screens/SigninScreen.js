@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -8,13 +9,24 @@ export default function SigninScreen() {
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get('redirect');
   const redirect = redirectInUrl ? redirectInUrl : '/';
+
+  const submitHandler = async e => {
+    e.preventDefault();
+    try {
+      const { data } = await Axios.post('/api/users/signin', {
+        email,
+        password
+      });
+    } catch (err) {}
+  };
+
   return (
     <Container className="small-container">
       <Helmet>
         <title>Sign In</title>
       </Helmet>
       <h1 className="my-3">Sign In</h1>
-      <Form>
+      <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control type="email" required />
