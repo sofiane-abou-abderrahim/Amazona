@@ -26,7 +26,8 @@ export default function SigninScreen() {
       });
 
       ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      console.log(data);
+      // console.log(data);
+      localStorage.setItem('userinfo', JSON.stringify(data));
     } catch (err) {}
   };
 
