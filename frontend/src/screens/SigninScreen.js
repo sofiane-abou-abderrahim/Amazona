@@ -4,7 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Store } from '../Store';
 
 export default function SigninScreen() {
   const { search } = useLocation();
@@ -14,6 +15,8 @@ export default function SigninScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+
   const submitHandler = async e => {
     e.preventDefault();
     try {
@@ -21,6 +24,8 @@ export default function SigninScreen() {
         email,
         password
       });
+
+      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
       console.log(data);
     } catch (err) {}
   };
