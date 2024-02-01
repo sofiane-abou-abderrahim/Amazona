@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
@@ -11,6 +11,12 @@ import { Store } from '../Store';
 
 export default function PlaceOrderScreen() {
   const navigate = useNavigate();
+
+  const [{ loading, error }, dispatch] = useReducer(reducer, {
+    loading: false,
+    error: ''
+  });
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
 
