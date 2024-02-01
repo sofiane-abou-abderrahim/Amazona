@@ -34,6 +34,16 @@ export default function PlaceOrderScreen() {
               <Link to="/shipping">Edit</Link>
             </Card.Body>
           </Card>
+
+          <Card className="mb-3">
+            <Card.Body>
+              <Card.Title>Payment</Card.Title>
+              <Card.Text>
+                <strong>Method:</strong> {cart.paymentMethod}
+              </Card.Text>
+              <Link to="/payment">Edit</Link>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </div>
