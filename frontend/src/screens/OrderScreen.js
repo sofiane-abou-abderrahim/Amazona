@@ -1,5 +1,11 @@
 import React from 'react';
 
 export default function OrderScreen() {
-  return <div></div>;
+  return loading ? (
+    <LoadingBox></LoadingBox>
+  ) : error ? (
+    <MessageBox variant="danger">{error}</MessageBox>
+  ) : (
+    <div></div>
+  );
 }
