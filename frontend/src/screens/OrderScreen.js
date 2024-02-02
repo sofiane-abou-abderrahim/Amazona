@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -61,6 +62,11 @@ export default function OrderScreen() {
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
-    <div></div>
+    <div>
+      <Helmet>
+        <title>Order {orderId}</title>
+      </Helmet>
+      <h1 className="my-3">Order {orderId}</h1>
+    </div>
   );
 }
