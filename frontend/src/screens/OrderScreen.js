@@ -1,6 +1,8 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { Store } from '../Store';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -17,11 +19,40 @@ function reducer(state, action) {
 }
 
 export default function OrderScreen() {
+  const { state } = useContext(Store);
+  const { userInfo } = state;
+
+  const params = useParams();
+  const { id: orderId } = params;
+
+  const navigate = useNavigate();
+
   const [{ loading, error, order }, dispatch] = useReducer(reducer, {
     loading: true,
     order: {},
     error: ''
   });
+
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        dispatch({ type: 'FETCH_REQUEST' });
+        const { data } = await axios.get(`/api/orders/${orderId}`, {
+          headers: { authorization: `Bearer ${userInfo.token}` }
+        });
+        dispatch({ type: 'FETCH_SUCCESS', payload: data });
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+      }
+    };
+
+    if (!userInfo) {
+      return navigate('/login');
+    }
+    if (!order._id || (order._id && order._id !== orderId)) {
+      fetchOrder();
+    }
+  }, [order, userInfo, orderId, navigate]);
 
   return loading ? (
     <LoadingBox></LoadingBox>
