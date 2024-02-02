@@ -46,11 +46,14 @@ export default function OrderScreen() {
 
   const navigate = useNavigate();
 
-  const [{ loading, error, order }, dispatch] = useReducer(reducer, {
-    loading: true,
-    order: {},
-    error: ''
-  });
+  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      order: {},
+      error: '',
+      successPay: false,
+      loadingPay: false
+    });
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
