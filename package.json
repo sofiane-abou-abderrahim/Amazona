@@ -1,5 +1,21 @@
 {
-  "dependencies": {
-    "use-reducer-logger": "^1.0.2"
-  }
+  "name": "amazona",
+  "version": "1.0.0",
+  "description": "# Lessons",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install  && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sofiane-abou-abderrahim/amazona.git"
+  },
+  "author": "Sofiane Abou Abderrahim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sofiane-abou-abderrahim/amazona/issues"
+  },
+  "homepage": "https://github.com/sofiane-abou-abderrahim/amazona#readme"
 }
