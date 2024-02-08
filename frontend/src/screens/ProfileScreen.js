@@ -13,6 +13,10 @@ export default function ProfileScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const submitHandler = async e => {
+    e.preventDefault();
+  };
+
   return (
     <div className="container small-container">
       <Helmet>
