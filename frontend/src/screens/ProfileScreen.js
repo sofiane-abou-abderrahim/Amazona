@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { Store } from '../Store';
 
 export default function ProfileScreen() {
