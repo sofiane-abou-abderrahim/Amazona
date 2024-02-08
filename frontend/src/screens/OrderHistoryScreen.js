@@ -7,6 +7,8 @@ export default function OrderHistoryScreen() {
       <Helmet>
         <title>Order History</title>
       </Helmet>
+
+      <h1>Order History</h1>
     </div>
   );
 }
