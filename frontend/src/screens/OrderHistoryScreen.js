@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { Store } from '../Store';
 
 export default function OrderHistoryScreen() {
+  const { state } = useContext(Store);
+  const { userInfo } = state;
+
   return (
     <div>
       <Helmet>
