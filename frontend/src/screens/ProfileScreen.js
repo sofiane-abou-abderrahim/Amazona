@@ -8,6 +8,9 @@ export default function ProfileScreen() {
   const { userInfo } = state;
 
   const [name, setName] = useState(userInfo.name);
+  const [email, setEmail] = useState(userInfo.email);
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   return (
     <div className="container small-container">
