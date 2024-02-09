@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet-async';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Rating from '../components/Rating';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -200,6 +202,15 @@ export default function SearchScreen() {
               </li>
             </ul>
           </div>
+        </Col>
+        <Col md={9}>
+          {loading ? (
+            <LoadingBox></LoadingBox>
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
+          ) : (
+            <></>
+          )}
         </Col>
       </Row>
     </div>
