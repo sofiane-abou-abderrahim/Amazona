@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -83,5 +84,11 @@ export default function SearchScreen() {
     return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
 
-  return <div></div>;
+  return (
+    <div>
+      <Helmet>
+        <title>Search Products</title>
+      </Helmet>
+    </div>
+  );
 }
