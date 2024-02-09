@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 import Rating from '../components/Rating';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import Button from 'react-bootstrap/Button';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -209,7 +210,30 @@ export default function SearchScreen() {
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
-            <></>
+            <>
+              <Row className="justify-content-between mb-3">
+                <Col md={6}>
+                  <div>
+                    {countProducts === 0 ? 'No' : countProducts} Results
+                    {query !== 'all' && ' : ' + query}
+                    {category !== 'all' && ' : ' + category}
+                    {price !== 'all' && ' : Price ' + price}
+                    {rating !== 'all' && ' : Rating ' + rating + ' & up'}
+                    {query !== 'all' ||
+                    category !== 'all' ||
+                    rating !== 'all' ||
+                    price !== 'all' ? (
+                      <Button
+                        variant="light"
+                        onClick={() => navigate('/search')}
+                      >
+                        <i className="fas fa-times-circle"></i>
+                      </Button>
+                    ) : null}
+                  </div>
+                </Col>
+              </Row>
+            </>
           )}
         </Col>
       </Row>
