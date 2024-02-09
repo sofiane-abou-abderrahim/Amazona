@@ -28,6 +28,21 @@ const reducer = (state, action) => {
   }
 };
 
+const prices = [
+  {
+    name: '$1 to $50',
+    value: '1-50'
+  },
+  {
+    name: '$51 to $200',
+    value: '51-200'
+  },
+  {
+    name: '$201 to $1000',
+    value: '201-1000'
+  }
+];
+
 export default function SearchScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -111,6 +126,29 @@ export default function SearchScreen() {
                     to={getFilterUrl({ category: c })}
                   >
                     {c}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3>Price</h3>
+            <ul>
+              <li>
+                <Link
+                  className={'all' === price ? 'text-bold' : ''}
+                  to={getFilterUrl({ price: 'all' })}
+                >
+                  Any
+                </Link>
+              </li>
+              {prices.map(p => (
+                <li key={p.value}>
+                  <Link
+                    to={getFilterUrl({ price: p.value })}
+                    className={p.value === price ? 'text-bold' : ''}
+                  >
+                    {p.name}
                   </Link>
                 </li>
               ))}
