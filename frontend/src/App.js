@@ -35,6 +35,7 @@ function App() {
   };
 
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   return (
     <BrowserRouter>
