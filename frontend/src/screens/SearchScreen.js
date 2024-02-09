@@ -11,7 +11,6 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
-import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -263,7 +262,7 @@ export default function SearchScreen() {
 
               <div>
                 {[...Array(pages).keys()].map(x => (
-                  <LinkContainer
+                  <Link
                     key={x + 1}
                     className="mx-1"
                     to={getFilterUrl({ page: x + 1 })}
@@ -274,7 +273,7 @@ export default function SearchScreen() {
                     >
                       {x + 1}
                     </Button>
-                  </LinkContainer>
+                  </Link>
                 ))}
               </div>
             </>
