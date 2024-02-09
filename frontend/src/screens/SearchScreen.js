@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getError } from '../utils';
@@ -57,6 +57,8 @@ export default function SearchScreen() {
     };
     fetchData();
   }, [category, error, order, page, price, query, rating]);
+
+  const [categories, setCategories] = useState([]);
 
   return <div></div>;
 }
