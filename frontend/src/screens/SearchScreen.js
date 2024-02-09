@@ -1,9 +1,11 @@
 import React, { useEffect, useReducer, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 import { Helmet } from 'react-helmet-async';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -89,6 +91,33 @@ export default function SearchScreen() {
       <Helmet>
         <title>Search Products</title>
       </Helmet>
+      <Row>
+        <Col md={3}>
+          <h3>Department</h3>
+          <div>
+            <ul>
+              <li>
+                <Link
+                  className={'all' === category ? 'text-bold' : ''}
+                  to={getFilterUrl({ category: 'all' })}
+                >
+                  Any
+                </Link>
+              </li>
+              {categories.map(c => (
+                <li key={c}>
+                  <Link
+                    className={c === category ? 'text-bold' : ''}
+                    to={getFilterUrl({ category: c })}
+                  >
+                    {c}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Col>
+      </Row>
     </div>
   );
 }
