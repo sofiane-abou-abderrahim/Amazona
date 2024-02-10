@@ -19,55 +19,55 @@ const data = {
   products: [
     {
       // _id: '1',
-      name: 'Nike Slim shirt',
-      slug: 'nike-slim-shirt',
-      category: 'Shirts',
-      image: '/images/p1.jpg', // 679px × 829px
+      name: "Aisha - Les parfums d'Igor",
+      slug: 'aisha-les-parfums-d-igor',
+      category: "Les Parfums d'Igor",
+      image: '/images/aisha-les-parfums-d-igor-600x600.webp', // 600px × 600px
       price: 120,
       countInStock: 10,
-      brand: 'Nike',
+      brand: "Les Parfums d'Igor",
       rating: 4.5,
       numReviews: 10,
-      description: 'high quality shirt'
+      description: 'Eau de parfum de qualité'
     },
     {
       // _id: '2',
-      name: 'Adidas Fit Shirt',
-      slug: 'adidas-fit-shirt',
-      category: 'Shirts',
-      image: '/images/p2.jpg',
+      name: 'Black Boat - Black Edition',
+      slug: 'black-boat-black-edition',
+      category: 'Black Edition',
+      image: '/images/black-boat-clark-kent-black-edition-600x600.webp',
       price: 250,
       countInStock: 0,
-      brand: 'Adidas',
+      brand: 'Black Edition',
       rating: 4.0,
       numReviews: 10,
-      description: 'high quality product'
+      description: 'Fragrance au top'
     },
     {
       // _id: '3',
-      name: 'Nike Slim Pant',
-      slug: 'nike-slim-pant',
-      category: 'Pants',
-      image: '/images/p3.jpg',
+      name: 'Sucre Noir - Arte Profumi',
+      slug: 'sucre-noir-arte-profumi',
+      category: 'Arte Profumi',
+      image: '/images/sucre-noir-arte-profumi-600x600.webp',
       price: 25,
       countInStock: 15,
-      brand: 'Nike',
+      brand: 'Arte Profumi',
       rating: 3.5,
       numReviews: 14,
-      description: 'high quality product'
+      description: "Eau de parfum d'excellence"
     },
     {
       // _id: '4',
-      name: 'Adidas Fit Pant',
-      slug: 'adidas-fit-pant',
-      category: 'Pants',
-      image: '/images/p4.jpg',
+      name: 'Yara Lattafa Perfumes',
+      slug: 'yara-lattafa-perfumes',
+      category: 'Lattafa Perfumes',
+      image: '/images/yara-lattafa-perfumes-600x600.webp',
       price: 65,
       countInStock: 5,
-      brand: 'Puma',
+      brand: 'Lattafa Perfumes',
       rating: 2.5,
       numReviews: 10,
-      description: 'high quality product'
+      description: 'Excellent parfum pour femme'
     }
   ]
 };
