@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { Store } from '../Store';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -49,5 +51,16 @@ export default function ProductListScreen() {
     fetchData();
   }, [page, userInfo]);
 
-  return <div></div>;
+  return (
+    <div>
+      <h1>Products</h1>
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 }
