@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { Store } from '../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -31,6 +32,9 @@ export default function ProductListScreen() {
   const { search, pathname } = useLocation();
   const sp = new URLSearchParams(search);
   const page = sp.get('page') || 1;
+
+  const { state } = useContext(Store);
+  const { userInfo } = state;
 
   useEffect(() => {
     const fetchData = async () => {
