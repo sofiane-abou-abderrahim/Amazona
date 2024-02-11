@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
+import { Store } from '../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -22,6 +23,9 @@ export default function DashboardScreen() {
     loading: true,
     error: ''
   });
+
+  const { state } = useContext(Store);
+  const { userInfo } = state;
 
   return <div>DashboardScreen</div>;
 }
