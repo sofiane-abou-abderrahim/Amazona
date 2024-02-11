@@ -25,6 +25,13 @@ orderRouter.post(
 );
 
 orderRouter.get(
+  '/summary',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {})
+);
+
+orderRouter.get(
   '/mine',
   isAuth,
   expressAsyncHandler(async (req, res) => {
