@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
 import { Store } from '../Store';
 import { getError } from '../utils';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -46,5 +48,16 @@ export default function DashboardScreen() {
     fetchData();
   }, [userInfo]);
 
-  return <div>DashboardScreen</div>;
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      {loading ? (
+        <LoadingBox />
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 }
