@@ -1,4 +1,5 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
+import axios from 'axios';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -25,6 +26,19 @@ export default function ProductListScreen() {
     loading: true,
     error: ''
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(`/api/products/admin?page=${page} `, {
+          headers: { Authorization: `Bearer ${userInfo.token}` }
+        });
+
+        dispatch({ type: 'FETCH_SUCCESS', payload: data });
+      } catch (err) {}
+    };
+    fetchData();
+  }, [page, userInfo]);
 
   return <div></div>;
 }
