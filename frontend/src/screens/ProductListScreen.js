@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -21,5 +21,10 @@ const reducer = (state, action) => {
 };
 
 export default function ProductListScreen() {
+  const [{ loading, error, products, pages }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: ''
+  });
+
   return <div></div>;
 }
