@@ -25,6 +25,18 @@ const reducer = (state, action) => {
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
 
+    case 'CREATE_REQUEST':
+      return { ...state, loadingCreate: true };
+
+    case 'CREATE_SUCCESS':
+      return {
+        ...state,
+        loadingCreate: false
+      };
+
+    case 'CREATE_FAIL':
+      return { ...state, loadingCreate: false };
+
     default:
       return state;
   }
