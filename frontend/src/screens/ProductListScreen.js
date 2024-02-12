@@ -43,10 +43,11 @@ const reducer = (state, action) => {
 };
 
 export default function ProductListScreen() {
-  const [{ loading, error, products, pages }, dispatch] = useReducer(reducer, {
-    loading: true,
-    error: ''
-  });
+  const [{ loading, error, products, pages, loadingCreate }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      error: ''
+    });
 
   const navigate = useNavigate();
 
@@ -107,6 +108,8 @@ export default function ProductListScreen() {
           </div>
         </Col>
       </Row>
+
+      {loadingCreate && <LoadingBox></LoadingBox>}
 
       {loading ? (
         <LoadingBox></LoadingBox>
