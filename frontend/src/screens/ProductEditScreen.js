@@ -5,6 +5,8 @@ import { Store } from '../Store';
 import { getError } from '../utils';
 import Container from 'react-bootstrap/Container';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -70,6 +72,14 @@ export default function ProductEditScreen() {
         <title>Edit Product ${productId}</title>
       </Helmet>
       <h1>Edit Product {productId}</h1>
+
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 }
