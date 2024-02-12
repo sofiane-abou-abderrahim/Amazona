@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 import { Store } from '../Store';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { getError } from '../utils';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -34,7 +36,9 @@ export default function ProductListScreen() {
     error: ''
   });
 
-  const { search, pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const { search } = useLocation();
   const sp = new URLSearchParams(search);
   const page = sp.get('page') || 1;
 
@@ -53,6 +57,29 @@ export default function ProductListScreen() {
     };
     fetchData();
   }, [page, userInfo]);
+
+  const createHandler = async () => {
+    if (window.confirm('Are you sure to create?')) {
+      try {
+        dispatch({ type: 'CREATE_REQUEST' });
+        const { data } = await axios.post(
+          '/api/products',
+          {},
+          {
+            headers: { Authorization: `Bearer ${userInfo.token}` }
+          }
+        );
+        toast.success('product created successfully');
+        dispatch({ type: 'CREATE_SUCCESS' });
+        navigate(`/admin/product/${data.product._id}`);
+      } catch (err) {
+        toast.error(getError(error));
+        dispatch({
+          type: 'CREATE_FAIL'
+        });
+      }
+    }
+  };
 
   return (
     <div>
