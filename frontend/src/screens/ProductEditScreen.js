@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import { Store } from '../Store';
 
 const reducer = (state, action) => {
@@ -22,6 +22,15 @@ export default function ProductEditScreen() {
     loading: true,
     error: ''
   });
+
+  const [name, setName] = useState('');
+  const [slug, setSlug] = useState('');
+  const [price, setPrice] = useState('');
+  const [image, setImage] = useState('');
+  const [category, setCategory] = useState('');
+  const [countInStock, setCountInStock] = useState('');
+  const [brand, setBrand] = useState('');
+  const [description, setDescription] = useState('');
 
   return <div></div>;
 }
