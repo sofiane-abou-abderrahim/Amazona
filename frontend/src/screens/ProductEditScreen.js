@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Store } from '../Store';
 import { getError } from '../utils';
+import Container from 'react-bootstrap/Container';
+import { Helmet } from 'react-helmet-async';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -62,5 +64,12 @@ export default function ProductEditScreen() {
     fetchData();
   }, [productId]);
 
-  return <div></div>;
+  return (
+    <Container className="small-container">
+      <Helmet>
+        <title>Edit Product ${productId}</title>
+      </Helmet>
+      <h1>Edit Product {productId}</h1>
+    </Container>
+  );
 }
