@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useReducer } from 'react';
 import { Store } from '../Store';
 
 const reducer = (state, action) => {
@@ -17,6 +17,11 @@ const reducer = (state, action) => {
 export default function ProductEditScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
+
+  const [{ loading, error }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: ''
+  });
 
   return <div></div>;
 }
