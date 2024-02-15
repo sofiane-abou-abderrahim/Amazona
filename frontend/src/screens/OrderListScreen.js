@@ -67,8 +67,12 @@ export default function OrderListScreen() {
         });
       }
     };
-    fetchData();
-  }, [userInfo]);
+    if (successDelete) {
+      dispatch({ type: 'DELETE_RESET' });
+    } else {
+      fetchData();
+    }
+  }, [userInfo, successDelete]);
 
   const deleteHandler = async order => {
     if (window.confirm('Are you sure to delete?')) {
