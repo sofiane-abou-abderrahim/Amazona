@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import { Store } from '../Store';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -34,6 +34,10 @@ export default function UserEditScreen() {
   const { id: userId } = params;
 
   const navigate = useNavigate();
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return <div></div>;
 }
