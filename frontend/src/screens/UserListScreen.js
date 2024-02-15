@@ -43,10 +43,11 @@ const reducer = (state, action) => {
 export default function UserListScreen() {
   const navigate = useNavigate();
 
-  const [{ loading, error, users }, dispatch] = useReducer(reducer, {
-    loading: true,
-    error: ''
-  });
+  const [{ loading, error, users, loadingDelete, successDelete }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      error: ''
+    });
 
   const { state } = useContext(Store);
   const { userInfo } = state;
@@ -66,8 +67,12 @@ export default function UserListScreen() {
         });
       }
     };
-    fetchData();
-  }, [userInfo]);
+    if (successDelete) {
+      dispatch({ type: 'DELETE_RESET' });
+    } else {
+      fetchData();
+    }
+  }, [userInfo, successDelete]);
 
   const deleteHandler = async user => {
     if (window.confirm('Are you sure to delete?')) {
@@ -93,6 +98,8 @@ export default function UserListScreen() {
         <title>Users</title>
       </Helmet>
       <h1>Users</h1>
+
+      {loadingDelete && <LoadingBox></LoadingBox>}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
