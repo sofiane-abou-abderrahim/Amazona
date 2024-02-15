@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -20,5 +20,10 @@ const reducer = (state, action) => {
 };
 
 export default function UserEditScreen() {
+  const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: ''
+  });
+
   return <div></div>;
 }
