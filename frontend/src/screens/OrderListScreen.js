@@ -1,11 +1,16 @@
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Store } from '../Store';
 import { getError } from '../utils';
 
 export default function OrderListScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
+
+  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: ''
+  });
 
   useEffect(() => {
     const fetchData = async () => {
