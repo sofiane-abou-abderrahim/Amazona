@@ -3,6 +3,23 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import { Store } from '../Store';
 import { getError } from '../utils';
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_REQUEST':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return {
+        ...state,
+        orders: action.payload,
+        loading: false
+      };
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 export default function OrderListScreen() {
   const { state } = useContext(Store);
   const { userInfo } = state;
