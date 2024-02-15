@@ -1,6 +1,8 @@
-import React, { useContext, useReducer, useState } from 'react';
-import { Store } from '../Store';
+import axios from 'axios';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Store } from '../Store';
+import { getError } from '../utils';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -38,6 +40,27 @@ export default function UserEditScreen() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        dispatch({ type: 'FETCH_REQUEST' });
+        const { data } = await axios.get(`/api/users/${userId}`, {
+          headers: { Authorization: `Bearer ${userInfo.token}` }
+        });
+        setName(data.name);
+        setEmail(data.email);
+        setIsAdmin(data.isAdmin);
+        dispatch({ type: 'FETCH_SUCCESS' });
+      } catch (err) {
+        dispatch({
+          type: 'FETCH_FAIL',
+          payload: getError(err)
+        });
+      }
+    };
+    fetchData();
+  }, [userId, userInfo]);
 
   return <div></div>;
 }
