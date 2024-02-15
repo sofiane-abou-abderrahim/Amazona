@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
@@ -256,6 +257,17 @@ export default function OrderScreen() {
                       </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}
+                  </ListGroup.Item>
+                )}
+
+                {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                  <ListGroup.Item>
+                    {loadingDeliver && <LoadingBox></LoadingBox>}
+                    <div className="d-grid">
+                      <Button type="button" onClick={deliverOrderHandler}>
+                        Deliver Order
+                      </Button>
+                    </div>
                   </ListGroup.Item>
                 )}
               </ListGroup>
