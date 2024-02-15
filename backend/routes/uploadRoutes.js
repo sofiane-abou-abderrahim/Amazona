@@ -14,6 +14,12 @@ const upload = multer();
 
 const uploadRouter = express.Router();
 
-uploadRouter.post('/', isAuth, isAdmin, async (req, res) => {});
+uploadRouter.post(
+  '/',
+  isAuth,
+  isAdmin,
+  upload.single('file'),
+  async (req, res) => {}
+);
 
 export default uploadRouter;
