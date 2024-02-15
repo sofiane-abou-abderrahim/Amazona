@@ -91,6 +91,14 @@ export default function UserListScreen() {
                   >
                     Edit
                   </Button>
+                  &nbsp;
+                  <Button
+                    type="button"
+                    variant="light"
+                    onClick={() => deleteHandler(user)}
+                  >
+                    Delete
+                  </Button>
                 </td>
               </tr>
             ))}
