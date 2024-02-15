@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useReducer } from 'react';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
@@ -54,6 +55,24 @@ export default function UserListScreen() {
     };
     fetchData();
   }, [userInfo]);
+
+  const deleteHandler = async user => {
+    if (window.confirm('Are you sure to delete?')) {
+      try {
+        dispatch({ type: 'DELETE_REQUEST' });
+        await axios.delete(`/api/users/${user._id}`, {
+          headers: { Authorization: `Bearer ${userInfo.token}` }
+        });
+        toast.success('user deleted successfully');
+        dispatch({ type: 'DELETE_SUCCESS' });
+      } catch (error) {
+        toast.error(getError(error));
+        dispatch({
+          type: 'DELETE_FAIL'
+        });
+      }
+    }
+  };
 
   return (
     <div>
