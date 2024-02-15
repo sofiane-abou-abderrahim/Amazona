@@ -1,6 +1,6 @@
 import React, { useContext, useReducer } from 'react';
 import { Store } from '../Store';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +32,8 @@ export default function UserEditScreen() {
 
   const params = useParams();
   const { id: userId } = params;
+
+  const navigate = useNavigate();
 
   return <div></div>;
 }
