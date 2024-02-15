@@ -144,6 +144,14 @@ export default function ProductListScreen() {
                     >
                       Edit
                     </Button>
+                    &nbsp;
+                    <Button
+                      type="button"
+                      variant="light"
+                      onClick={() => deleteHandler(product)}
+                    >
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))}
