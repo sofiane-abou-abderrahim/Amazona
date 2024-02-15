@@ -46,6 +46,9 @@ const reducer = (state, action) => {
     case 'DELETE_FAIL':
       return { ...state, loadingDelete: false, successDelete: false };
 
+    case 'DELETE_RESET':
+      return { ...state, loadingDelete: false, successDelete: false };
+
     default:
       return state;
   }
