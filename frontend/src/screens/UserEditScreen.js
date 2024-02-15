@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Store } from '../Store';
 import { getError } from '../utils';
 
@@ -61,6 +62,28 @@ export default function UserEditScreen() {
     };
     fetchData();
   }, [userId, userInfo]);
+
+  const submitHandler = async e => {
+    e.preventDefault();
+    try {
+      dispatch({ type: 'UPDATE_REQUEST' });
+      await axios.put(
+        `/api/users/${userId}`,
+        { _id: userId, name, email, isAdmin },
+        {
+          headers: { Authorization: `Bearer ${userInfo.token}` }
+        }
+      );
+      dispatch({
+        type: 'UPDATE_SUCCESS'
+      });
+      toast.success('User updated successfully');
+      navigate('/admin/users');
+    } catch (error) {
+      toast.error(getError(error));
+      dispatch({ type: 'UPDATE_FAIL' });
+    }
+  };
 
   return <div></div>;
 }
