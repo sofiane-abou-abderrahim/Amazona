@@ -56,7 +56,15 @@ const reducer = (state, action) => {
 
 export default function ProductListScreen() {
   const [
-    { loading, error, products, pages, loadingCreate, loadingDelete },
+    {
+      loading,
+      error,
+      products,
+      pages,
+      loadingCreate,
+      loadingDelete,
+      successDelete
+    },
     dispatch
   ] = useReducer(reducer, {
     loading: true,
@@ -82,8 +90,13 @@ export default function ProductListScreen() {
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {}
     };
-    fetchData();
-  }, [page, userInfo]);
+
+    if (successDelete) {
+      dispatch({ type: 'DELETE_RESET' });
+    } else {
+      fetchData();
+    }
+  }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
     if (window.confirm('Are you sure to create?')) {
