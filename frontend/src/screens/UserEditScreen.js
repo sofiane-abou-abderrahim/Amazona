@@ -1,7 +1,13 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer, useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import { getError } from '../utils';
 
@@ -85,5 +91,54 @@ export default function UserEditScreen() {
     }
   };
 
-  return <div></div>;
+  return (
+    <Container className="small-container">
+      <Helmet>
+        <title>Edit User ${userId}</title>
+      </Helmet>
+      <h1>Edit User {userId}</h1>
+
+      {loading ? (
+        <LoadingBox></LoadingBox>
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
+        <Form onSubmit={submitHandler}>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              value={email}
+              type="email"
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
+
+          <Form.Check
+            className="mb-3"
+            type="checkbox"
+            id="isAdmin"
+            label="isAdmin"
+            checked={isAdmin}
+            onChange={e => setIsAdmin(e.target.checked)}
+          />
+
+          <div className="mb-3">
+            <Button disabled={loadingUpdate} type="submit">
+              Update
+            </Button>
+            {loadingUpdate && <LoadingBox></LoadingBox>}
+          </div>
+        </Form>
+      )}
+    </Container>
+  );
 }
