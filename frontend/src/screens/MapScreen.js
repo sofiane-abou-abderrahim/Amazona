@@ -9,6 +9,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import Button from 'react-bootstrap/Button';
+import { toast } from 'react-toastify';
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libs = ['places'];
@@ -82,6 +83,23 @@ export default function MapScreen() {
 
   const onMarkerLoad = marker => {
     markerRef.current = marker;
+  };
+
+  const onConfirm = () => {
+    const places = placeRef.current.getPlaces() || [{}];
+    ctxDispatch({
+      type: 'SAVE_SHIPPING_ADDRESS_MAP_LOCATION',
+      payload: {
+        lat: location.lat,
+        lng: location.lng,
+        address: places[0].formatted_address,
+        name: places[0].name,
+        vicinity: places[0].vicinity,
+        googleAddressId: places[0].id
+      }
+    });
+    toast.success('location selected successfully.');
+    navigate('/shipping');
   };
 
   return (
