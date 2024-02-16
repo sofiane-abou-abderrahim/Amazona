@@ -8,6 +8,7 @@ import {
 } from '@react-google-maps/api';
 import { useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
+import Button from 'react-bootstrap/Button';
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libs = ['places'];
@@ -93,7 +94,14 @@ export default function MapScreen() {
           <StandaloneSearchBox
             onLoad={onLoadPlaces}
             onPlacesChanged={onPlacesChanged}
-          ></StandaloneSearchBox>
+          >
+            <div className="map-input-box">
+              <input type="text" placeholder="Enter your address"></input>
+              <Button type="button" onClick={onConfirm}>
+                Confirm
+              </Button>
+            </div>
+          </StandaloneSearchBox>
         </GoogleMap>
       </LoadScript>
     </div>
