@@ -19,6 +19,23 @@ export default function MapScreen() {
   const placeRef = useRef(null);
   const markerRef = useRef(null);
 
+  const getUserCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      alert('Geolocation os not supported by this browser');
+    } else {
+      navigator.geolocation.getCurrentPosition(position => {
+        setCenter({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+        setLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      });
+    }
+  };
+
   useEffect(() => {
     const fetch = async () => {
       const { data } = await axios('/api/keys/google-maps', {
