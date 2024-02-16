@@ -1,7 +1,13 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Store } from '../Store';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import {
+  LoadScript,
+  GoogleMap,
+  StandaloneSearchBox,
+  Marker
+} from '@react-google-maps/api';
+import { useNavigate } from 'react-router-dom';
+import { Store } from '../Store';
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libs = ['places'];
@@ -52,5 +58,18 @@ export default function MapScreen() {
     });
   }, [ctxDispatch]);
 
-  return <div className="full-box"></div>;
+  return (
+    <div className="full-box">
+      <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
+        <GoogleMap
+          id="smaple-map"
+          mapContainerStyle={{ height: '100%', width: '100%' }}
+          center={center}
+          zoom={15}
+          onLoad={onLoad}
+          onIdle={onIdle}
+        ></GoogleMap>
+      </LoadScript>
+    </div>
+  );
 }
