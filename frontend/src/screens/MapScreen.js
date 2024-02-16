@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Store } from '../Store';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libs = ['places'];
@@ -19,6 +20,16 @@ export default function MapScreen() {
   const markerRef = useRef(null);
 
   useEffect(() => {
+    const fetch = async () => {
+      const { data } = await axios('/api/keys/google-maps', {
+        headers: { Authorization: `BEARER ${userInfo.token}` }
+      });
+      setGoogleApiKey(data.key);
+      getUserCurrentLocation();
+    };
+
+    fetch();
+
     ctxDispatch({
       type: 'SET_FULLBOX_ON'
     });
