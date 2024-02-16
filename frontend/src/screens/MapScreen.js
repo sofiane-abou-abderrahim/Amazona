@@ -58,6 +58,17 @@ export default function MapScreen() {
     });
   }, [ctxDispatch]);
 
+  const onLoad = map => {
+    mapRef.current = map;
+  };
+
+  const onIdle = () => {
+    setLocation({
+      lat: mapRef.current.center.lat(),
+      lng: mapRef.current.center.lng()
+    });
+  };
+
   return (
     <div className="full-box">
       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
