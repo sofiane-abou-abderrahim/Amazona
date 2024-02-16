@@ -102,6 +102,7 @@ export default function MapScreen() {
               </Button>
             </div>
           </StandaloneSearchBox>
+          <Marker position={location} onLoad={onMarkerLoad}></Marker>
         </GoogleMap>
       </LoadScript>
     </div>
