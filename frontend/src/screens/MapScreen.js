@@ -80,6 +80,10 @@ export default function MapScreen() {
     setLocation({ lat: place.lat(), lng: place.lng() });
   };
 
+  const onMarkerLoad = marker => {
+    markerRef.current = marker;
+  };
+
   return (
     <div className="full-box">
       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
