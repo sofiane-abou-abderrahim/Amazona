@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Store } from '../Store';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,10 @@ export default function MapScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const navigate = useNavigate();
+
+  const [googleApiKey, setGoogleApiKey] = useState('');
+  const [center, setCenter] = useState(defaultLocation);
+  const [location, setLocation] = useState(center);
 
   useEffect(() => {
     ctxDispatch({
