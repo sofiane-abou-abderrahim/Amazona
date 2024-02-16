@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { Store } from '../Store';
 
+const defaultLocation = { lat: 45.516, lng: -73.56 };
+const libs = ['places'];
+
 export default function MapScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
 
@@ -10,5 +13,5 @@ export default function MapScreen() {
     });
   }, [ctxDispatch]);
 
-  return <div className="full-box">123</div>;
+  return <div className="full-box"></div>;
 }
