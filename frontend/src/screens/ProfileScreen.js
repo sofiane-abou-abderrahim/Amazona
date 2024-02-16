@@ -40,7 +40,7 @@ export default function ProfileScreen() {
     if (password === confirmPassword) {
       try {
         const { data } = await axios.put(
-          '/api/users/profile',
+          '/api/users/profile/:id',
           {
             name,
             email,
