@@ -3,6 +3,7 @@ import { createContext, useReducer } from 'react';
 export const Store = createContext();
 
 const initialState = {
+  fullBox: false,
   userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null,
@@ -24,6 +25,11 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'SET_FULLBOX_ON':
+      return { ...state, fullBox: true };
+    case 'SET_FULLBOX_OFF':
+      return { ...state, fullBox: false };
+
     case 'CART_ADD_ITEM':
       // add to cart
       const newItem = action.payload;

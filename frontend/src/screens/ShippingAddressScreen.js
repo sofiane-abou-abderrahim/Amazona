@@ -10,6 +10,7 @@ export default function ShippingAddressScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
+    fullBox,
     userInfo,
     cart: { shippingAddress }
   } = state;
@@ -37,7 +38,8 @@ export default function ShippingAddressScreen() {
         address,
         city,
         postalCode,
-        country
+        country,
+        location: shippingAddress.location
       }
     });
     localStorage.setItem(
@@ -47,11 +49,16 @@ export default function ShippingAddressScreen() {
         address,
         city,
         postalCode,
-        country
+        country,
+        location: shippingAddress.location
       })
     );
     navigate('/payment');
   };
+
+  useEffect(() => {
+    ctxDispatch({ type: 'SET_FULLBOX_OFF' });
+  }, [ctxDispatch, fullBox]);
 
   return (
     <div>
