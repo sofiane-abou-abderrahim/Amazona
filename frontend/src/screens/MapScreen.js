@@ -1,11 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { Store } from '../Store';
+import { useNavigate } from 'react-router-dom';
 
 const defaultLocation = { lat: 45.516, lng: -73.56 };
 const libs = ['places'];
 
 export default function MapScreen() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { userInfo } = state;
+  const navigate = useNavigate();
 
   useEffect(() => {
     ctxDispatch({
