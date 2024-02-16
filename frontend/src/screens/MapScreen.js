@@ -69,6 +69,16 @@ export default function MapScreen() {
     });
   };
 
+  const onLoadPlaces = place => {
+    placeRef.current = place;
+  };
+
+  const onPlacesChanged = () => {
+    const place = placeRef.current.getPlaces()[0].geometry.location;
+    setCenter({ lat: place.lat(), lng: place.lng() });
+    setLocation({ lat: place.lat(), lng: place.lng() });
+  };
+
   return (
     <div className="full-box">
       <LoadScript libraries={libs} googleMapsApiKey={googleApiKey}>
@@ -79,7 +89,12 @@ export default function MapScreen() {
           zoom={15}
           onLoad={onLoad}
           onIdle={onIdle}
-        ></GoogleMap>
+        >
+          <StandaloneSearchBox
+            onLoad={onLoadPlaces}
+            onPlacesChanged={onPlacesChanged}
+          ></StandaloneSearchBox>
+        </GoogleMap>
       </LoadScript>
     </div>
   );
